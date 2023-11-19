@@ -1,5 +1,6 @@
-import { Controller, Get, Param , NotFoundException } from '@nestjs/common';
+import { Controller, Get, Param , NotFoundException, Body , Post} from '@nestjs/common';
 import { TodoService } from './todo.service';
+import { TodoModel } from './todo.model';
 
 @Controller('todo')
 export class TodoController {
@@ -18,6 +19,11 @@ export class TodoController {
                  throw new NotFoundException(`Id:${id} does not found`)
             }
             return t;
+      }
+
+      @Post()
+      createTodo(@Body() todo: TodoModel){
+            return this.todoService.CreateTodo(todo);
       }
 }
 //id,title,description,created_at,completed

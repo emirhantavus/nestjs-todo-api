@@ -17,5 +17,11 @@ export class TodoService {
 
       findTodoById(id: number): TodoModel{
             return this.todos.find(i => i.id == id);
-      } 
+      }
+
+      CreateTodo(todo: TodoModel): TodoModel{
+            const newObject = {id: this.todos.length + 1, title: "new", description: "new",created_at: new Date, completed:  false};
+            this.todos.push(newObject);
+            return newObject;
+      }
 }
